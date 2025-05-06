@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bildklassifizierung mit ML5.js</title>
+
+    <!-- Material Design CSS -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body class="mdc-typography">
+    <!-- Material Top App Bar -->
+<header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+        <!-- Titel der App -->
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <span class="mdc-top-app-bar__title">Bildklassifizierung mit ML5.js</span>
+        </section>
+
+        <!-- Navigation (neu hinzugefügt) -->
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+            <nav class="app-bar-navigation">
+                <a href="#card1" class="nav-link">Auswertung</a>
+                <a href="#card2" class="nav-link">Image Classification</a>
+                <a href="#card3" class="nav-link">Diskussion</a>
+                <a href="#card4" class="nav-link">Dokumentation</a>
+            </nav>
+        </section>
+    </div>
+</header>
+
+
+
+    <!-- Main Content -->
+    <main class="mdc-top-app-bar--fixed-adjust">
+<div class="content-wrapper">
+
+    <!-- Neue Card für die weitere Aufgabe -->
+    <div id="card1" class="mdc-card classification-card">
+        <div class="mdc-card__content">
+            <h2 class="mdc-typography--headline6"><strong>Bildklassifikation</strong></h2>
+
+            <!-- Richtig klassifizierte Bilder mit Ergebnissen -->
+            <div class="classification-section">
+                <h3 class="section-title">Richtig klassifizierte Bilder mit Ergebnissen</h3>
+
+                <div class="classification-row">
+                    <!-- Linkes Bild: Richtig klassifiziert mit Haken -->
+                    <div class="images">
+                        <img src="images/blume.jpg" alt="Richtig Klassifiziert 1" class="uniform-image">
+                        <span class="checkmark">✔</span> <!-- Grüner Haken -->
+                    </div>
+
+                    <!-- Rechtes Bild: Ergebnis -->
+                    <div class="images">
+                        <img src="images/chart_blume.jpg" alt="Ergebnis Blume" class="uniform-image">
+                    </div>
+                </div>
+
+                <div class="classification-row">
+                    <!-- Linkes Bild: Richtig klassifiziert mit Haken -->
+                    <div class="images">
+                        <img src="images/labrador_retriever.jpeg" alt="Richtig Klassifiziert 2" class="uniform-image">
+                        <span class="checkmark">✔</span> <!-- Grüner Haken -->
+                    </div>
+
+                    <!-- Rechtes Bild: Ergebnis -->
+                    <div class="images">
+                        <img src="images/chart-labrador-retriever.jpg" alt="Ergebnis Katze" class="uniform-image">
+                    </div>
+                </div>
+
+                <div class="classification-row">
+                    <!-- Linkes Bild: Richtig klassifiziert mit Haken -->
+                    <div class="images">
+                        <img src="images/banane_halb.jpg" alt="Richtig Klassifiziert 3" class="uniform-image">
+                        <span class="checkmark">✔</span> <!-- Grüner Haken -->
+                    </div>
+
+                    <!-- Rechtes Bild: Ergebnis -->
+                    <div class="images">
+                        <img src="images/chart_banane_halb.jpg" alt="Ergebnis Banane" class="uniform-image">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Falsch klassifizierte Bilder -->
+            <div class="classification-section">
+                <h3 class="section-title">Falsch klassifizierte Bilder mit Ergebnissen</h3>
+
+                <div class="classification-row">
+                    <!-- Linkes Bild: Falsch klassifiziert -->
+                    <div class="images">
+                        <img src="images/baum_winkel.jpg" alt="Falsch Klassifiziert 1" class="uniform-image">
+                        <span class="cross">✖</span> <!-- Rotes Kreuz -->
+
+                    </div>
+
+                    <!-- Rechtes Bild: Ergebnis -->
+                    <div class="images">
+                        <img src="images/chart-baum-winkel.jpg" alt="Ergebnis Baum Winkel" class="uniform-image">
+                    </div>
+                </div>
+
+                <div class="classification-row">
+                    <!-- Linkes Bild: Falsch klassifiziert -->
+                    <div class="images">
+                        <img src="images/katze_pfoten.jpg" alt="Falsch Klassifiziert 2" class="uniform-image">
+                        <span class="cross">✖</span> <!-- Rotes Kreuz -->
+
+                    </div>
+
+                    <!-- Rechtes Bild: Ergebnis -->
+                    <div class="images">
+                        <img src="images/chart_katze_pfote.jpg" alt="Ergebnis Katze Pfoten" class="uniform-image">
+                    </div>
+                </div>
+
+                <div class="classification-row">
+                    <!-- Linkes Bild: Falsch klassifiziert -->
+                    <div class="images">
+                        <img src="images/banane_schwarzweiß.jpg" alt="Falsch Klassifiziert 3" class="uniform-image">
+                        <span class="cross">✖</span> <!-- Rotes Kreuz -->
+
+                    </div>
+
+                    <!-- Rechtes Bild: Ergebnis -->
+                    <div class="images">
+                        <img src="images/chart-banane-schwarzweiss.jpg" alt="Ergebnis Banane Schwarzweiß" class="uniform-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bestehende Card bleibt darunter -->
+    <div id="card2" class="mdc-card classification-card">
+    <div class="mdc-card__content">
+        <h2 class="mdc-typography--headline6"><strong>Bild hochladen und klassifizieren</strong></h2>
+
+        <!-- Wrapper für Canvas und Ergebnisse -->
+        <div class="flex-row">
+            <!-- Canvas Container -->
+            <div id="canvasContainer" class="canvas-container-with-button">
+
+                <!-- Upload Button -->
+                <button id="custom-upload-btn" class="mdc-button mdc-button--raised">
+                    <div class="mdc-button__ripple"></div>
+                    <i class="material-icons mdc-button__icon">file_upload</i>
+                    <span class="mdc-button__label">Bild auswählen</span>
+                </button>
+
+                <input type="file" id="file-input" accept="image/*" style="display: none;">
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsContainer" class="mdc-card result-card mdc-elevation--z2">
+                <div class="mdc-card__content">
+                    <h3 class="mdc-typography--subtitle1">Klassifizierungsergebnisse</h3>
+                    
+                    <!-- Canvas für das Donut-Diagramm -->
+                    <div id="chartContainer">
+                        <!-- Canvas für das Diagramm -->
+                        <canvas id="resultChart" width="400" height="400"></canvas>
+                        
+                        <!-- Ergebnisse unterhalb des Diagramms -->
+                        <div id="results"></div>
+                    </div>
+
+                    <!-- Result Button -->
+                    <button id="save-results-btn" class="mdc-button mdc-button--raised" onclick="saveDonutAndLabels()">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons mdc-button__icon">save</i>
+                        <span class="mdc-button__label">Chart und Ergebnisse speichern</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="card3" class="mdc-card classification-card">
+    <div class="mdc-card__content">
+        <h2 class="mdc-typography--headline6"><strong>Diskussion</strong></h2>
+        <div class="discussion-section">
+            <p class="mdc-typography--body1">
+                Bei der Durchführung der Bildklassifikation mit dem vortrainierten Modell zeigte sich, dass Farben eine zentrale Rolle spielen. Eine graue Banane wurde vom Modell nicht erkannt, während die gleiche Banane in Farbe, obwohl nur halb sichtbar, korrekt als solche klassifiziert wurde. Filtereffekte oder extreme Belichtung erschwerten die Erkennung zusätzlich. Bildauschschnitte, wie schön kurz erwähnt, sind, wenn elementare Merkmale sichtbar sind, kein Problem: Ein Hundekopf ohne Körper wurde vom Modell trotzdem korrekt erkannt – inklusive Rasse. Ungewöhnliche Perspektiven führten hingegen oft zu Fehlern, z. B. wurde ein Baum von unten fotografiert als Obelisk klassifiziert. Unscharfe Bilder oder stark verwaschene Aufnahmen hatten ebenfalls eine deutlich geringere Trefferquote. Menschen wurden vom Modell gar nicht erkannt, selbst wenn sie zentral im Bild waren, sondern es wurde sich nur auf Objekte im Bild konzentriert. Schlüssig, da das Modell primär nur auf Objekte trainiert wurde. Insgesamt zeigt sich, dass das Modell zuverlässig arbeitet, wenn typische Merkmale sichtbar und das Bild "klassisch" aufgebaut ist, jedoch Schwierigkeiten bei abweichenden Darstellungen hat.
+            </p>
+
+        </div>
+    </div>
+</div>
+<div id="card4" class="mdc-card documentation-card">
+    <div class="mdc-card__content">
+        <h2 class="mdc-typography--headline6"><strong>Dokumentation</strong></h2>
+
+        <!-- Dokumentationsbereiche -->
+        <div class="documentation-section">
+            <!-- Technischer Teil -->
+            <h3 class="mdc-typography--subtitle1"><strong>Technik</strong></h3>
+            <p class="mdc-typography--body1">
+                In dieser Webanwendung wurden folgende Frameworks und Bibliotheken verwendet:
+            </p>
+            <ul>
+                <li><strong>aml5.js</strong><br>
+                    Wird für die Bildklassifikation mit einem vortrainierten MobileNet-Modell verwendet. Die Bibliothek vereinfacht den Einsatz von Machine Learning im Browser. Basiert auf TensorFlow, einem JavaScript-Framework für maschinelles Lernen.
+                </li>
+                <li><strong>p5.js</strong><br>
+                    Wird zur allgemeinen Strukturierung des Codes und zur Erstellung des Canvas-Elements verwendet, das für die Anzeige und Bearbeitung der hochgeladenen Bilder zuständig ist.
+                </li>
+                <li><strong>Chart.js</strong><br>
+                    Dient zur Visualisierung der Klassifikationsergebnisse in Form von Diagrammen. Die Confidence-Werte der Top-3-Klassen werden anschaulich dargestellt.
+                </li>
+                <li><strong>html2canvas</strong><br>
+                    Wird eingesetzt, um HTML-Elemente (hier Diagramme) als Screenshots darzustellen oder lokal abzuspeichern.</li>
+                <li><strong>Material IO / Material Design</strong><br>
+                    Dient als Design-Grundlage für ein konsistentes und benutzerfreundliches User Interface. Komponenten wie Buttons, Cards oder Layout-Grids wurden auf Grundlage von Material-Design-Richtlinien umgesetzt, um eine moderne und barrierearme Gestaltung zu gewährleisten.
+                </li>
+            </ul>
+
+            <p class="mdc-typography--body1">
+                <strong>Technische Besonderheiten</strong>
+            </p>
+            <ul>
+                <li>
+                    <strong>Automatische Klassifikation direkt nach Upload:</strong>
+                    Nach dem Hochladen eines Bildes startet die Klassifikation sofort, ohne dass ein zusätzlicher Klick erforderlich ist. Das sorgt für einen schnellen und effizienten Ablauf.
+                </li>
+                <li>
+                    <strong>Automatische Klassifikation direkt nach Upload:</strong>
+                    Nach dem Hochladen eines Bildes startet die Klassifikation sofort, ohne dass ein zusätzlicher Klick erforderlich ist. Das sorgt für einen schnellen und effizienten Ablauf.
+                </li>
+                <li>
+                    <strong>Visualisierung der Ergebnisse mit Chart.js:</strong>
+                    Die drei besten Klassifikationsergebnisse werden visuell als Diagramm inklusive Prozentwerten dargestellt – direkt neben dem hochgeladenen Bild.
+                </li>
+                <li>
+                    <strong>Herunterladen des Diagramms als Bild (JPG):</strong>
+                    Nutzer können das generierte Diagramm lokal abspeichern. Dies wird mithilfe der Bibliothek <code>html2canvas</code> umgesetzt.
+                </li>
+                <li>
+                    <strong>Smooth Scrolling Navigation:</strong>
+                    Die Navigationsleiste ermöglicht ein weiches Scrollen zu den jeweiligen Seitenabschnitten, was die Benutzerführung angenehmer macht.
+                </li>
+                <li>
+                    <strong>Verwendung von Material.io-Komponenten:</strong>
+                    Die Anwendung verwendet UI-Elemente aus dem Material Design (z. B. Cards, Container, Buttons), um ein modernes, übersichtliches und konsistentes Layout zu gewährleisten.
+                </li>
+            </ul>
+            <br>
+
+            <!-- Fachlicher Teil -->
+            <h3 class="mdc-typography--subtitle1"><strong>Fachlich</strong></h3>
+            <p class="mdc-typography--body1">
+                <strong>Implementierung der Logik</strong>
+            </p>
+            Die Entwicklung der Anwendung basierte zunächst auf dem offiziellen ml5.js Image Classification Tutorial, das als Einstieg diente, um den Umgang mit einem vortrainierten Machine-Learning-Modell zu erlernen. Dieses Tutorial wurde als funktionierendes Grundgerüst übernommen und anschließend schrittweise erweitert.<br>
+            <br>Zuerst wurde die Funktion integriert, dass Nutzer eigene Bilder hochladen können. Nach dem Upload wird das Bild links in der Anwendung dargestellt. Parallel dazu wird das Bild durch das vortrainierte Modell (basierend auf MobileNet) klassifiziert. Die drei wahrscheinlichsten Vorhersagen inklusive ihrer Confidence-Werte werden angezeigt.<br>
+            <br> die visuelle Darstellung dieser Wahrscheinlichkeitsverteilung kam die Bibliothek Chart.js zum Einsatz. Die Klassifikationsergebnisse werden automatisch in einem Diagramm visualisiert, das direkt neben dem Bild erscheint. Dadurch wird die Modellantwort nicht nur textuell, sondern auch grafisch erfassbar. Um die Ergebnisse exportierbar zu machen, wurde html2canvas eingebunden. Diese Bibliothek wandelt den Diagramm-Bereich in ein Bild um, das als JPG gespeichert werden kann – ein entscheidender Schritt, da diese exportierten Diagramme später für die Aufgabenstellung dokumentiert werden mussten.<br>
+            <br>Für die Gestaltung der Benutzeroberfläche wurde Material Design (material.io) genutzt, insbesondere die Umsetzung über Komponenten wie Cards, Container, Buttons und flexible Grid-Layouts. Damit sollte nicht nur ein modernes und einheitliches Aussehen erzielt werden, sondern auch eine klare Struktur und eine benutzerfreundliche Navigation. Die Anwendung ist in einer Zweispaltenansicht organisiert: links jeweils das Bild, rechts das zugehörige Diagramm. Die Beispielbilder sind in visuell getrennten Bereichen gruppiert – einmal für korrekte, einmal für falsche Klassifikationen.<br>
+            <br>Die interaktive Logik wurde mit p5.js unterstützt, da ml5.js eng auf p5.js aufbaut. Es wurde jedoch auf eine minimalistische Nutzung dieser Bibliothek geachtet, um sich auf die zentralen Interaktionspunkte zu konzentrieren: Upload, Darstellung, Klassifikation und Visualisierung.<br>
+
+            <br>Im Verlauf der Arbeit wurde intensiv mit unterschiedlichen Bildern experimentiert, um ein fundiertes Verständnis dafür zu entwickeln, unter welchen Bedingungen das vortrainierte Modell zuverlässig arbeitet – und wann nicht. Dabei wurden gezielt Variationen an Bildern vorgenommen: etwa Farbveränderungen wie eine Umwandlung in Graustufen, der Einsatz von Filtereffekten, untypische Perspektiven (z. B. von unten fotografierte Objekte), Bilddrehungen, Teilansichten (z. B. nur der Kopf eines Tiers), Unschärfen oder komplexe, ablenkende Hintergründe.<br>
+            <br>Diese Experimente führten zu interessanten Erkenntnissen über die Grenzen und Stärken des Modells. So wurde etwa eine graue Banane, die in ihrer Farbgebung stark vom gewohnten Gelb abwich, fälschlicherweise als Haken klassifiziert – obwohl die Form korrekt war. Umgekehrt wurde dieselbe Banane, obwohl auf dem Bild nur zur Hälfte sichtbar, korrekt erkannt – vermutlich, weil Farbe und Form ausreichten, um typische Merkmale zu identifizieren. Auch bei einem Hund, von dem nur der Kopf im Bild war, konnte das Modell nicht nur erkennen, dass es sich um einen Hund handelt, sondern sogar die Rasse korrekt vorhersagen. Diese Beispiele zeigen, dass das Modell nicht zwingend ein vollständiges Objekt benötigt, um richtige Ergebnisse zu liefern – aber bei fehlender Farbe oder Kontext fehleranfällig ist.<br>
+            Ein weiteres Beispiel ist eine Katze, die zwar vollständig im Bild ist, aber deren Körper und Kopf verschwommen sind, während der Fokus auf den Pfoten im Vordergrund liegt. Das Modell konnte sie nicht korrekt als Katze klassifizieren – ein Hinweis darauf, dass dominante Bildbereiche das Ergebnis stark beeinflussen können. Auch stark von der Norm abweichende Blickwinkel, wie bei einem von unten fotografierten Baum, führten zu Fehlklassifikationen – in diesem Fall wurde der Baum als Obelisk erkannt. Dies verdeutlicht, dass das Modell stark auf typische Trainingsdaten (Standardperspektiven, Farben, Bildaufbau) angewiesen ist.<br>
+            Solche Beobachtungen unterstreichen grundlegende Schwächen von Bildklassifikationsmodellen: Sie sind sensibel gegenüber Änderungen in Farbe, Perspektive, Schärfe und Bildkomposition. Sie interpretieren dominante Muster im Bild, nicht zwangsläufig semantische Zusammenhänge. Die Auswahl der sechs Beispielbilder – drei richtig, drei falsch klassifiziert – erfolgte vor diesem Hintergrund gezielt, um die Leistungsfähigkeit und typischen Fehlermuster des Modells zu illustrieren.<br>
+
+            <br>Die Gestaltung der Anwendung orientiert sich an den Prinzipien der Gebrauchstauglichkeit gemäß ISO 9241-11 und -110. Ziel war es, eine funktionale und benutzerfreundliche Lösung zur Bildklassifikation zu entwickeln, die sowohl intuitiv als auch effektiv bedienbar ist.
+            <ul>
+                <li><strong>Aufgabenangemessenheit:</strong><br> Die Anwendung ermöglicht eine einfache, zielgerichtete Bildklassifikation. Nutzer:innen können schnell Bilder hochladen, die Ergebnisse einsehen und verstehen – ohne technische Vorkenntnisse.</li>
+                <li><strong>Selbstbeschreibungsfähigkeit:</strong><br> Alle interaktiven Elemente (z. B. Buttons) sind eindeutig beschriftet. Die App gibt klares visuelles Feedback bei Nutzeraktionen – etwa beim Upload oder nach der Klassifikation.</li>
+                <li><strong>Steuerbarkeit:</strong><br> Die Nutzer:innen behalten die Kontrolle über den Ablauf. So kann z. B. selbst entschieden werden, wann ein Bild klassifiziert werden soll (per Button), anstatt dies automatisch auszulösen.</li>
+                <li><strong>Erwartungskonformität:</strong><br> Die Anwendung entspricht gängigen Web-Standards (z. B. Klickverhalten, Scrollen, Navigationsstruktur). Das Verhalten der UI ist daher vorhersehbar und benutzerfreundlich.</li>
+                <li><strong>Kontextsensitivität:</strong><br> Die Anwendung reagiert unmittelbar auf die Aktionen des Nutzers. Wird ein Bild hochgeladen, erscheint dieses sofort im Layout, und der Klassifikationsprozess kann direkt gestartet werden.</li>
+            </ul><br>
+
+            <!-- Quellen-Bereich -->
+            <h3 class="mdc-typography--subtitle1"><strong>Quellen</strong></h3>
+            <p class="mdc-typography--body1">
+                Im Rahmen der Entwicklung und Dokumentation dieser Anwendung wurden folgende Quellen genutzt:
+            </p>
+            <ul>
+                <li>
+                    ml5.js Dokumentation:
+                    <a href="https://docs.ml5js.org/#/reference/image-classifier" target="_blank" rel="noopener noreferrer">https://ml5js.org/docs/</a>
+                </li>
+                <li>
+                    p5.js Hauptseite:
+                    <a href="https://p5js.org/" target="_blank" rel="noopener noreferrer">https://p5js.org/</a>
+                </li>
+                <li>
+                    Chart.js Dokumentation:
+                    <a href="https://www.chartjs.org/docs/latest/" target="_blank" rel="noopener noreferrer">https://www.chartjs.org/docs/latest/</a>
+                </li>
+                <li>
+                    html2canvas GitHub-Repository:
+                    <a href="https://github.com/niklasvh/html2canvas" target="_blank" rel="noopener noreferrer">https://github.com/niklasvh/html2canvas</a>
+                </li>
+                <li>
+                    Material Design Ressourcen:
+                    <a href="https://material.io/" target="_blank" rel="noopener noreferrer">https://material.io/</a>
+                </li>
+
+
+                <li>
+                    ISO 9241-11:2018 – Anforderungen an die Gebrauchstauglichkeit:
+                    <a href="https://de.wikipedia.org/wiki/ISO_9241#ISO_9241-11_Gebrauchstauglichkeit:_Begriffe_und_Konzepte" target="_blank">
+                        https://de.wikipedia.org/wiki/ISO_9241#ISO_9241-11_Gebrauchstauglichkeit:_Begriffe_und_Konzepte</a>
+                </li>
+                <li>
+                    ISO 9241-110:2020 – Interaktionsprinzipien:
+                    <a href="https://de.wikipedia.org/wiki/ISO_9241#ISO_9241-11_Gebrauchstauglichkeit:_Begriffe_und_Konzepte" target="_blank">
+                        https://de.wikipedia.org/wiki/ISO_9241#ISO_9241-11_Gebrauchstauglichkeit:_Begriffe_und_Konzepte</a>
+                </li>
+                <li>
+                    EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks:
+                    <a href="https://arxiv.org/abs/1704.04861" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1704.04861</a>
+                </li>
+                <li>
+                    Image Classification mit ml5.js – Einführung:
+                    <a href="https://www.youtube.com/watch?v=yNkAuWz5lnY&t=3s" target="_blank" rel="noopener noreferrer">
+                        https://www.youtube.com/watch?v=yNkAuWz5lnY&t=3s
+                    </a>
+                </li>
+                <li>
+                    Unsplash – Kostenlose Bilder:
+                    <a href="https://unsplash.com/de" target="_blank" rel="noopener noreferrer">
+                        https://unsplash.com/de
+                    </a>
+                </li>
+                <li>
+                    Kaggle – Plattform für Datenwissenschaft:
+                    <a href="https://www.kaggle.com/" target="_blank" rel="noopener noreferrer">
+                        https://www.kaggle.com/
+                    </a>
+                </li>
+                <li>
+                    ChatGPT – KI-gestützte Unterhaltungen:
+                    <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+                        https://chatgpt.com/
+                    </a>
+                </li>
+
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+
+</div>
+    </main>
+
+    <!-- Material Design JavaScript -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="sketch.js"></script>
+    <script>
+        // Initialisiere Material Design Komponenten
+        window.onload = () => {
+            mdc.autoInit();
+
+            // Verknüpfe Upload-Button mit verstecktem Dateiupload
+            const uploadButton = document.querySelector('#custom-upload-btn');
+            const fileInput = document.querySelector('#file-input');
+            uploadButton.addEventListener('click', () => fileInput.click());
+        };
+    </script>
+<style>
+#resultChart {
+    max-width: 100%;
+    height: auto;
+}
+</style>
+</body>
+</html>
