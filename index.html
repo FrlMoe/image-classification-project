@@ -169,7 +169,7 @@
                     <h3 class="mdc-typography--subtitle1">Klassifizierungsergebnisse</h3>
                     
                     <!-- Canvas für das Donut-Diagramm -->
-                    <div id="chartContainer">
+                    <div id="chartContainer" >
                         <!-- Canvas für das Diagramm -->
                         <canvas id="resultChart" width="400" height="400"></canvas>
                         
@@ -265,7 +265,7 @@
             </p>
             Die Entwicklung der Anwendung basierte zunächst auf dem offiziellen ml5.js Image Classification Tutorial, das als Einstieg diente, um den Umgang mit einem vortrainierten Machine-Learning-Modell zu erlernen. Dieses Tutorial wurde als funktionierendes Grundgerüst übernommen und anschließend schrittweise erweitert.<br>
             <br>Zuerst wurde die Funktion integriert, dass Nutzer eigene Bilder hochladen können. Nach dem Upload wird das Bild links in der Anwendung dargestellt. Parallel dazu wird das Bild durch das vortrainierte Modell (basierend auf MobileNet) klassifiziert. Die drei wahrscheinlichsten Vorhersagen inklusive ihrer Confidence-Werte werden angezeigt.<br>
-            <br> die visuelle Darstellung dieser Wahrscheinlichkeitsverteilung kam die Bibliothek Chart.js zum Einsatz. Die Klassifikationsergebnisse werden automatisch in einem Diagramm visualisiert, das direkt neben dem Bild erscheint. Dadurch wird die Modellantwort nicht nur textuell, sondern auch grafisch erfassbar. Um die Ergebnisse exportierbar zu machen, wurde html2canvas eingebunden. Diese Bibliothek wandelt den Diagramm-Bereich in ein Bild um, das als JPG gespeichert werden kann – ein entscheidender Schritt, da diese exportierten Diagramme später für die Aufgabenstellung dokumentiert werden mussten.<br>
+            <br>Die visuelle Darstellung dieser Wahrscheinlichkeitsverteilung kam die Bibliothek Chart.js zum Einsatz. Die Klassifikationsergebnisse werden automatisch in einem Diagramm visualisiert, das direkt neben dem Bild erscheint. Dadurch wird die Modellantwort nicht nur textuell, sondern auch grafisch erfassbar. Um die Ergebnisse exportierbar zu machen, wurde html2canvas eingebunden. Diese Bibliothek wandelt den Diagramm-Bereich in ein Bild um, das als JPG gespeichert werden kann – ein entscheidender Schritt, da diese exportierten Diagramme später für die Aufgabenstellung dokumentiert werden mussten.<br>
             <br>Für die Gestaltung der Benutzeroberfläche wurde Material Design (material.io) genutzt, insbesondere die Umsetzung über Komponenten wie Cards, Container, Buttons und flexible Grid-Layouts. Damit sollte nicht nur ein modernes und einheitliches Aussehen erzielt werden, sondern auch eine klare Struktur und eine benutzerfreundliche Navigation. Die Anwendung ist in einer Zweispaltenansicht organisiert: links jeweils das Bild, rechts das zugehörige Diagramm. Die Beispielbilder sind in visuell getrennten Bereichen gruppiert – einmal für korrekte, einmal für falsche Klassifikationen.<br>
             <br>Die interaktive Logik wurde mit p5.js unterstützt, da ml5.js eng auf p5.js aufbaut. Es wurde jedoch auf eine minimalistische Nutzung dieser Bibliothek geachtet, um sich auf die zentralen Interaktionspunkte zu konzentrieren: Upload, Darstellung, Klassifikation und Visualisierung.<br>
 
@@ -376,11 +376,5 @@
             uploadButton.addEventListener('click', () => fileInput.click());
         };
     </script>
-<style>
-#resultChart {
-    max-width: 100%;
-    height: auto;
-}
-</style>
 </body>
 </html>
