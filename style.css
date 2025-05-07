@@ -36,40 +36,17 @@ main {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
 }
-
-/*#canvasContainer  {*/
-/*    width: 100%;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    margin: 24px 0;*/
-/*}*/
-
-/*#canvasContainer canvas {*/
-/*    max-width: 100%;*/
-/*    height: auto;*/
-/*}*/
-
-/*.result-card {*/
-/*    width: 100%;*/
-/*    margin-top: 16px;*/
-/*}*/
-
-/*.upload-button {*/
-/*    width: 100%;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    margin: 24px 0;*/
-/*}*/
-
-
-
 .mdc-card__content {
-    padding: 16px; /* Innenabstand beibehalten */
-    margin: 0;  /* Entferne unnötigen Platz */
-    box-sizing: border-box; /* Sorgt dafür, dass Inhalte ordentlich dargestellt werden */
+    display: flex; /* Flexbox aktivieren */
+    flex-direction: column; /* Vertikale Anordnung: oberer Inhalt + unterer Button */
+    justify-content: space-between; /* Button bleibt unten */
+    height: 100%; /* Passt die Höhe der Card an */
+    position: relative; /* Referenz für absolute Positionierung (falls benötigt) */
+    padding: 16px 16px 16px 16px; /* Einheitliches Padding für Inhalt und Platz für den Button */
+    margin: 0; /* Entferne unnötigen Platz */
+    box-sizing: border-box; /* Stellt dar */
+    overflow:visible
 }
-
 
 /* Responsive Design */
 @media (min-width: 1024px) {
@@ -79,9 +56,9 @@ main {
         justify-content: center;
     }
 
-    .content-wrapper {
-        width: 100%;
-        max-width: 1200px;
+.content-wrapper {
+    width: 100%;
+    max-width: 1200px;
     }
 }
 
@@ -94,12 +71,6 @@ main {
     background-color: #6200ee;
 }
 
-/*.mdc-card {*/
-/*    box-shadow: 0 2px 4px rgba(0,0,0,0.1);*/
-
-
-/* Wrapper für Canvas und Ergebnisse im Zwei-Spalten Layout */
-/* Flexbox für Canvas und Resultcontainer nebeneinander */
 .flex-row {
     display: flex; /* Aktiviert ein Flexbox-Layout */
     flex-direction: row; /* Inhalte werden horizontal ausgerichtet */
@@ -108,84 +79,11 @@ main {
     gap: 16px; /* Abstand zwischen Canvas und Resultcontainer */
 }
 
-/* Canvascontainer wird links positioniert */
-#canvasContainer {
-    flex: 2; /* Nimmt doppelt so viel Platz ein wie der Resultcontainer */
-    background-color: #ffffff; /* Optional: Hintergrundfarbe */
-    padding: 16px; /* Innenabstand */
-    text-align: center; /* Zentriere die Inhalte wie den Canvas */
-    border: 1px solid #ddd; /* Optional: Rahmen */
-    border-radius: 8px; /* Abgerundete Kanten */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
-}
-
-/* Resultcontainer wird rechts positioniert */
-#resultsContainer {
-    flex: 1; /* Nimmt weniger Platz ein als der Canvascontainer */
-    background-color: #ffffff;
-    padding: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 /* Button zentriert unterhalb des Canvascontainers */
 #upload-button-container {
     text-align: center; /* Zentriere den Button horizontal */
     margin-top: 16px; /* Abstand oberhalb des Buttons */
     width: 100%; /* Volle Breite */
-}
-
-/* Button-Styling */
-#custom-upload-btn {
-    padding: 12px 24px;
-    font-size: 14px;
-    border-radius: 4px;
-    background-color: #6200ee;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-    #resultsContainer {
-        margin-bottom: 16px; /* Abstand am unteren Rand */
-    }
-
-
-/* Canvascontainer wird links positioniert */
-#canvasContainer {
-    flex: 2; /* Nimmt doppelt so viel Platz ein wie der Resultcontainer */
-    background-color: #ffffff; /* Optional: Hintergrundfarbe */
-    padding: 16px; /* Innenabstand */
-    text-align: center; /* Zentriere die Inhalte wie den Canvas */
-    border: 1px solid #ddd; /* Optional: Rahmen */
-    border-radius: 8px; /* Abgerundete Kanten */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
-}
-
-
-/* Results Container Styling */
-#resultsContainer {
-    flex: 1;
-    max-width: 400px; /* Begrenzung der Kartengröße */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    height: auto; /* Automatisch an den Inhalt anpassen */
-    overflow: visible;
-    margin-bottom: 16px; /* Abstand am unteren Rand */
-
-
-}
-
-
-
-#chartContainer canvas {
-    max-width: 100%; /* Verhindert horizontales Überwachsen */
-    height: auto; /* Beibehaltung des Seitenverhältnisses */
-    max-height: 300px; /* Begrenzung der Höhe des Charts */
 }
 
 /* Upload-Button Styling */
@@ -196,9 +94,6 @@ main {
 
     margin-top: 24px;
 }
-
-
-
 
 /* Styling für die Navigations-Links in der App-Bar */
 .app-bar-navigation {
@@ -225,7 +120,6 @@ main {
     align-items: center; /* Vertikal zentriert */
     margin-bottom: 20px; /* Abstand zwischen den Reihen */
     padding: 0 80px; /* Innenabstand zu den Seiten */
-
 }
 
 /* Bildgröße einheitlich gestalten */
@@ -242,7 +136,6 @@ main {
     display: inline-block; /* Bilder bleiben nebeneinander */
 }
 
-
 /* Styling für das Ergebnis */
 .result {
     margin-left: 20px; /* Abstand zwischen Bild links und Ergebnis rechts */
@@ -256,35 +149,22 @@ main {
 .section-title {
     margin-top: 20px;    /* Optional: zusätzlicher Abstand zwischen der Überschrift und dem Inhalt */
 }
-/* Container-Anpassung, falls nötig */
-/*.images, .image {*/
-/*    margin-right: 20px;*/
 
 .chart {
     flex-grow: 1;
 }
 
-
-
 #results {
-         text-align: left; /* Text linksbündig ausrichten */
-         margin: 0 auto; /* Container zentrieren */
+    text-align: left; /* Text linksbündig ausrichten */
+    margin: 0 auto; /* Container zentrieren */
     padding: 0; /* Innenabstand entfernen */
-
     display: inline-block; /* Breite des Inhalts anpassen, um zentriert zu bleiben */
      }
 
-    #results p {
-        margin: 5px 0; /* Minimale Abstände zwischen den Texten */
-    }
-
-
-#chartContainer {
-    margin: 0; /* Entferne zusätzlichen Abstand */
-    padding: 0; /* Kein Padding */
-    text-align: center; /* Zentriere den Canvas-Inhalt */
-
+#results p {
+    margin: 5px 0; /* Minimale Abstände zwischen den Texten */
 }
+
 
 .cross {
     color: red;           /* Kreuz rot färben */
@@ -296,46 +176,47 @@ main {
     color: green;       /* Haken grün färben */
     font-size: 60px;    /* Größe anpassen */
     display: inline-block; /* Haken als Inline-Element direkt neben dem Bild */
-
-
-
 }
+
 .images {
     display: flex;       /* Flexbox aktivieren, um Elemente nebeneinander zu platzieren */
     align-items: center; /* Zentriere das Bild und den Haken vertikal */
     gap: 30px;           /* Abstand zwischen Bild und Haken */
 
 }
-/*#upload-button-container {*/
-/*    text-align: center; !* Zentriert den Button horizontal *!*/
-/*    margin-top: 16px; !* Platz direkt unter dem Canvas *!*/
-/*    width: 100%; !* Sorgt dafür, dass der Container die gesamte Breite einnimmt *!*/
-/*}*/
 
-.mdc-card__content {
-    display: flex;
-    flex-direction: column; /* Vertikale Anordnung: oberer Inhalt + unterer Button */
-    justify-content: space-between; /* Button bleibt unten */
-    height: 100%; /* Passt die Höhe der Card an */
-    position: relative; /* Referenz für absolute Positionierung (falls benötigt) */
-    padding-bottom: 16px; /* Platz für den Button */
-    box-sizing: border-box;
-    overflow: visible; /* Inhalte werden nicht abgeschnitten */
+#resultsContainer {
+    flex: 1; /* Nimmt einen proportionalen Platz ein */
+    max-width: 400px; /* Begrenzung der Kartengröße */
+    display: flex; /* Aktiviert Flexbox */
+    flex-direction: column; /* Inhalte vertikal anordnen */
+    align-items: center; /* Zentriere den Inhalt horizontal */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Leichter Schatten */
+    background-color: white; /* Hintergrundfarbe */
+    border: 1px solid #ddd; /* Rahmen */
+    border-radius: 8px; /* Abgerundete Kanten */
+    padding: 16px; /* Innenabstand */
+    height: auto; /* Automatisch an den Inhalt anpassen */
+    overflow: visible; /* Überschreibungen sichtbar machen */
+    margin-bottom: 8px; /* Abstand am unteren Rand */
 }
 
-/*#chartContainer {*/
-/*    max-width: 100%; !* Verhindert, dass der Container breiter wird als seine Eltern *!*/
-/*    max-height: 400px; !* Begrenzung der Höhe des Containers *!*/
-/*    overflow: hidden; !* Falls Inhalte größer sind, werden sie abgeschnitten *!*/
-/*}*/
-
+#chartContainer canvas {
+    max-width: 100%; /* Verhindert horizontales Überwachsen */
+    height: auto; /* Beibehaltung des Seitenverhältnisses */
+    max-height: 300px; /* Begrenzung der Höhe des Charts */
+}
 
 #chartContainer {
     max-height: calc(100% - 80px); /* Platz für den Button beachten */
     flex-grow: 1; /* Expandiert in den verfügbaren Platz */
     overflow-y: auto; /* Elemente innerhalb des Charts scrollbar machen */
+    margin: 0; /* Entferne zusätzlichen Abstand */
+    padding: 0; /* Kein Padding */
+    text-align: center; /* Zentriere den Canvas-Inhalt */
+    display: block;
+    width: 100%;
 }
-
 
 #save-results-btn {
     align-self: flex-end; /* Button bleibt rechtsbündig */
@@ -346,51 +227,25 @@ main {
     cursor: pointer;
     border-radius: 4px;
     padding: 12px 24px;
-}
-#canvasContainer {
-    display: flex;
-    flex-direction: column; /* Vertikale Ausrichtung der Inhalte */
-    align-items: center; /* Zentriere Bild und Button horizontal */
-    justify-content: flex-start; /* Beginne am oberen Rand */
-    gap: 16px; /* Abstand zwischen Bild und Button */
-    width: 100%;
-    margin-top: 16px;
-}
-
-
-
-#custom-upload-btn {
-    text-align: center; /* Text zentriert */
-}
-
-#resultsContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Zentriere den Inhalt horizontal */
-    padding: 16px;
-}
-
-#chartContainer {
-    display: block;
-    width: 100%;
-}
-
-#save-results-btn {
-    margin-top: 16px;
     text-align: center;
 }
 
 #canvasContainer {
     position: relative; /* Ermöglicht absolute Positionierung von Kind-Elementen */
     display: flex; /* Flexbox aktiviert */
+    flex: 2; /* Nimmt doppelt so viel Platz ein wie der Resultcontainer */
     flex-direction: column; /* Inhalte vertikal anordnen */
-    justify-content: flex-start; /* Inhalte beginnen oben */
+    justify-content: flex-start; /* Beginne am oberen Rand */
     align-items: center; /* Zentriert Inhalte horizontal */
-    padding-bottom: 60px; /* Platzhalter für den fixierten Button */
+    gap: 16px; /* Abstand zwischen Bild und Button */
+    width: 100%; /* Container füllt die Breite */
+    margin-top: 16px; /* Abstand zum oberen Rand */
+    padding: 16px 16px 60px; /* Innenabstand, Platz unten für Button */
     background-color: #ffffff; /* Hintergrundfarbe */
+    text-align: center; /* Inhalte wie Canvas zentrieren */
     border: 1px solid #ddd; /* Rahmen */
     border-radius: 8px; /* Abgerundete Kanten */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optionaler Schatten */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
 }
 
 #canvasContainer img {
